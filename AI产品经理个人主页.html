@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>林知远 · AI产品经理</title>
+<meta name="description" content="AI产品经理个人主页与作品集">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0E1A'/%3E%3Ctext x='32' y='43' font-size='34' font-family='sans-serif' font-weight='700' fill='%233CE0C4' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap">
+<style>
+/* ============ 设计 token ============ */
+:root{
+  --bg:#0A0E1A;
+  --bg-2:#0E1422;
+  --card:#131B2E;
+  --card-2:#182136;
+  --line:#222C46;
+  --text:#E9EDF6;
+  --sub:#9AA6C0;
+  --mut:#67749a;
+  --cyan:#3CE0C4;
+  --cyan-soft:rgba(60,224,196,.12);
+  --violet:#8B96FF;
+  --radius:16px;
+  --maxw:1080px;
+  --font-body:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --font-num:"Space Grotesk","Noto Sans SC",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--font-body);
+  line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+::selection{background:var(--cyan);color:#06231e}
+
+/* ============ 导航 ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);
+  background:rgba(10,14,26,.78);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:17px}
+.brand-mark{width:36px;height:36px;border-radius:10px;background:var(--cyan-soft);
+  display:flex;align-items:center;justify-content:center;color:var(--cyan);
+  font-family:var(--font-num);font-weight:700;font-size:18px;border:1px solid rgba(60,224,196,.25)}
+.nav-links{display:flex;align-items:center;gap:26px;font-size:15px;color:var(--sub)}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--cyan)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.btn{font-family:var(--font-body);cursor:pointer;border:none;border-radius:10px;
+  font-size:14px;padding:9px 16px;transition:all .2s;background:transparent;color:var(--sub)}
+.btn-ghost{border:1px solid var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn-primary{background:var(--cyan);color:#06231e;font-weight:700}
+.btn-primary:hover{filter:brightness(1.08)}
+.hamburger{display:none;background:transparent;border:1px solid var(--line);border-radius:9px;
+  width:40px;height:40px;cursor:pointer;color:var(--text);align-items:center;justify-content:center}
+
+/* ============ Hero ============ */
+.hero{padding:130px 0 70px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:48px;align-items:center}
+.eyebrow{font-family:var(--font-num);font-size:13px;letter-spacing:.14em;color:var(--cyan);
+  text-transform:uppercase;margin-bottom:18px;display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--cyan)}
+.hero h1{font-size:clamp(34px,5.2vw,56px);font-weight:900;line-height:1.2;letter-spacing:-.01em}
+.hero h1 .accent{color:var(--cyan)}
+.hero-role{font-family:var(--font-num);font-size:clamp(16px,2vw,20px);color:var(--violet);margin:14px 0 18px;font-weight:500}
+.hero-tag{color:var(--sub);font-size:17px;max-width:560px}
+.hero-cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.stats{display:flex;gap:38px;margin-top:42px;flex-wrap:wrap}
+.stat .num{font-family:var(--font-num);font-size:32px;font-weight:700;color:var(--cyan)}
+.stat .lbl{font-size:13.5px;color:var(--mut);margin-top:2px}
+.hero-art{display:flex;justify-content:center}
+.node-card{width:100%;max-width:300px;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:22px}
+.node-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.node-row:last-child{border-bottom:none}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.node-t{font-size:14.5px;color:var(--sub)}
+
+/* ============ 通用区块 ============ */
+section{padding:64px 0}
+.sec-head{margin-bottom:34px}
+.sec-kicker{font-family:var(--font-num);font-size:13px;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase;margin-bottom:10px}
+.sec-title{font-size:clamp(24px,3.2vw,32px);font-weight:900}
+.about p{color:var(--sub);font-size:16.5px;max-width:760px;margin-bottom:14px}
+
+/* ============ 技能 ============ */
+.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.skill-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px}
+.skill-card h3{font-size:17px;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+.skill-card h3 svg{color:var(--cyan)}
+.tags{display:flex;flex-wrap:wrap;gap:9px}
+.tag{font-size:13.5px;padding:6px 13px;border-radius:999px;background:var(--cyan-soft);
+  color:var(--cyan);border:1px solid rgba(60,224,196,.18)}
+.tag.v{color:var(--violet);background:rgba(139,150,255,.1);border-color:rgba(139,150,255,.2)}
+
+/* ============ 项目 ============ */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.proj-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;display:flex;flex-direction:column;gap:12px;transition:transform .2s,border-color .2s}
+.proj-card:hover{transform:translateY(-4px);border-color:rgba(60,224,196,.4)}
+.proj-role{font-family:var(--font-num);font-size:12.5px;color:var(--violet);letter-spacing:.06em}
+.proj-card h3{font-size:19px;font-weight:700}
+.proj-card p{color:var(--sub);font-size:15px;flex:1}
+.proj-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.proj-tags span{font-size:12.5px;color:var(--mut);border:1px solid var(--line);padding:4px 11px;border-radius:999px}
+
+/* ============ 经历时间轴 ============ */
+.timeline{position:relative;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl-item{position:relative;padding-bottom:30px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-30px;top:8px;width:12px;height:12px;
+  box-sizing:border-box;border-radius:50%;background:var(--bg);border:2px solid var(--cyan)}
+.tl-period{font-family:var(--font-num);font-size:13.5px;color:var(--cyan)}
+.tl-item h3{font-size:18px;margin:4px 0 2px}
+.tl-org{color:var(--violet);font-size:14.5px;margin-bottom:6px}
+.tl-item p{color:var(--sub);font-size:15px;max-width:680px}
+
+/* ============ 联系 ============ */
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.contact-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;display:flex;align-items:center;gap:15px}
+.contact-card svg{color:var(--cyan);flex:none}
+.contact-card .c-label{font-size:13px;color:var(--mut)}
+.contact-card .c-value{font-size:15.5px;color:var(--text);word-break:break-all}
+.contact-card a{color:var(--text)}
+.contact-card a:hover{color:var(--cyan)}
+
+footer{border-top:1px solid var(--line);padding:30px 0;margin-top:40px;color:var(--mut);font-size:13.5px}
+.foot-inner{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.foot-ver{font-family:var(--font-num)}
+
+/* ============ 编辑模式 ============ */
+body.editing [data-edit]{outline:1px dashed rgba(60,224,196,.45);outline-offset:3px;border-radius:6px;cursor:text}
+body.editing [data-edit]:focus{outline:2px solid var(--cyan);background:rgba(60,224,196,.05)}
+.add-btn,.del-btn{display:none;font-family:var(--font-body);cursor:pointer;border-radius:9px;
+  font-size:13px;padding:7px 13px}
+body.editing .add-btn{display:inline-flex;align-items:center;gap:6px;background:var(--cyan-soft);
+  color:var(--cyan);border:1px dashed var(--cyan)}
+body.editing .del-btn{display:inline-flex;position:absolute;top:10px;right:10px;z-index:5;
+  background:rgba(255,90,110,.14);color:#ff7d90;border:1px solid rgba(255,90,110,.3)}
+.editing-zone{position:relative}
+.edit-bar{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:60;
+  display:none;gap:10px;align-items:center;background:var(--card-2);border:1px solid var(--cyan);
+  border-radius:14px;padding:10px 14px;box-shadow:0 12px 40px rgba(0,0,0,.5);flex-wrap:wrap;justify-content:center;max-width:94vw}
+body.editing .edit-bar{display:flex}
+.edit-bar .tip{font-size:13px;color:var(--sub);margin-right:6px}
+.mini-btn{font-size:13.5px;padding:8px 14px;border-radius:9px;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--text)}
+.mini-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.mini-btn.done{background:var(--cyan);color:#06231e;font-weight:700;border-color:var(--cyan)}
+
+/* ============ 响应式 ============ */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .hero-art{display:none}
+  .proj-grid{grid-template-columns:repeat(2,1fr)}
+  .skill-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;
+    gap:0;background:var(--bg-2);border-bottom:1px solid var(--line);display:none;padding:8px 22px}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 0;width:100%;border-bottom:1px solid var(--line)}
+  .nav-links a:last-child{border-bottom:none}
+  .hamburger{display:flex}
+  .hero{padding:110px 0 50px}
+  .proj-grid{grid-template-columns:1fr}
+  .stats{gap:24px}
+  section{padding:48px 0}
+  .edit-bar{bottom:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+/* 加载揭示（仅一次，hero） */
+.reveal{opacity:0;transform:translateY(18px);animation:rise .7s ease forwards}
+.reveal.d1{animation-delay:.08s}.reveal.d2{animation-delay:.18s}.reveal.d3{animation-delay:.28s}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<!-- ===== 导航 ===== -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark" data-edit data-path="profile.initial">林</span>
+      <span data-edit data-path="profile.name">林知远</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">关于</a>
+      <a href="#skills">技能</a>
+      <a href="#projects">项目</a>
+      <a href="#experience">经历</a>
+      <a href="#contact">联系</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn btn-ghost" id="toggleEdit">编辑</button>
+      <button class="hamburger" id="hamburger" aria-label="菜单">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow reveal">AI PRODUCT MANAGER</span>
+      <h1 class="reveal d1">你好，我是<span class="accent" data-edit data-path="profile.name">林知远</span></h1>
+      <div class="hero-role reveal d2" data-edit data-path="profile.role">AI产品经理 · 从0到1打造智能产品</div>
+      <p class="hero-tag reveal d2" data-edit data-path="profile.tagline">把大模型能力翻译成真实可用的产品体验，用清晰的需求、严谨的验证和可落地的迭代，让AI真正解决用户问题。</p>
+      <div class="hero-cta reveal d3">
+        <button class="btn btn-primary" data-scroll="contact">联系我</button>
+        <button class="btn btn-ghost" data-scroll="projects">查看项目</button>
+      </div>
+      <div class="stats reveal d3" id="stats"></div>
+    </div>
+    <div class="hero-art">
+      <div class="node-card">
+        <div class="node-row"><span class="dot" style="background:var(--cyan)"></span><span class="node-t">需求拆解 · 明确用户价值</span></div>
+        <div class="node-row"><span class="dot" style="background:var(--violet)"></span><span class="node-t">Prompt与Agent方案设计</span></div>
+        <div class="node-row"><span class="dot" style="background:var(--cyan)"></span><span class="node-t">原型验证 · 数据驱动迭代</span></div>
+        <div class="node-row"><span class="dot" style="background:var(--violet)"></span><span class="node-t">跨团队协作落地上线</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 关于 ===== -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-kicker">ABOUT</div><h2 class="sec-title">关于我</h2></div>
+    <div id="aboutBody"></div>
+  </div>
+</section>
+
+<!-- ===== 技能 ===== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-kicker">SKILLS</div><h2 class="sec-title">技能栈</h2></div>
+    <div class="skill-grid" id="skillGrid"></div>
+  </div>
+</section>
+
+<!-- ===== 项目 ===== -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-kicker">PROJECTS</div><h2 class="sec-title">代表项目</h2></div>
+    <div class="proj-grid" id="projGrid"></div>
+  </div>
+</section>
+
+<!-- ===== 经历 ===== -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-kicker">EXPERIENCE</div><h2 class="sec-title">职业经历</h2></div>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- ===== 联系 ===== -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-kicker">CONTACT</div><h2 class="sec-title">联系方式</h2></div>
+    <div class="contact-grid" id="contactGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© <span id="year"></span> <span data-edit data-path="profile.name">林知远</span> · 本页内容可在编辑模式下自行修改</span>
+    <span class="foot-ver">V0.1.0</span>
+  </div>
+</footer>
+
+<!-- ===== 编辑工具条 ===== -->
+<div class="edit-bar">
+  <span class="tip">编辑模式：点文字直接改，自动保存到本机浏览器</span>
+  <button class="mini-btn" id="exportBtn">导出配置</button>
+  <button class="mini-btn" id="importBtn">导入配置</button>
+  <button class="mini-btn" id="resetBtn">恢复默认</button>
+  <button class="mini-btn done" id="doneBtn">完成编辑</button>
+  <input type="file" id="importFile" accept="application/json" hidden>
+</div>
+
+<script>
+/* ================= 默认占位数据（虚拟信息） ================= */
+const DEFAULT_DATA = {
+  profile:{
+    initial:"林",
+    name:"林知远",
+    role:"AI产品经理 · 从0到1打造智能产品",
+    tagline:"把大模型能力翻译成真实可用的产品体验，用清晰的需求、严谨的验证和可落地的迭代，让AI真正解决用户问题。",
+    stats:[
+      {num:"5+",label:"年产品与内容经验"},
+      {num:"8",label:"个AI产品实践"},
+      {num:"3",label:"个从0到1项目"}
+    ],
+    about:[
+      "长期关注大模型与Agent产品化，擅长把模糊的业务问题拆解成可验证的产品需求，熟悉从用户调研、PRD、原型到上线数据复盘的完整闭环。",
+      "具备UX设计与内容运营背景，理解用户心理与体验细节，能够在技术可行性与用户价值之间找到平衡点，推动AI功能真正被用起来。"
+    ]
+  },
+  skills:[
+    {group:"产品方法",items:[{t:"需求拆解",v:false},{t:"PRD撰写",v:false},{t:"用户调研",v:false},{t:"原型设计",v:false},{t:"数据复盘",v:false}]},
+    {group:"AI与Agent",items:[{t:"大模型应用设计",v:true},{t:"Prompt工程",v:true},{t:"Agent流程设计",v:true},{t:"RAG知识库",v:true},{t:"API联调认知",v:false}]},
+    {group:"设计与协作",items:[{t:"交互原型",v:false},{t:"信息架构",v:false},{t:"跨团队协作",v:false},{t:"竞品分析",v:false}]},
+    {group:"工具",items:[{t:"Figma",v:true},{t:"Dify",v:true},{t:"飞书",v:true},{t:"Notion",v:false},{t:"GitHub基础",v:false}]}
+  ],
+  projects:[
+    {title:"智能对话剧本杀平台",role:"产品负责人",desc:"设计多角色AI推理剧情体验，搭建角色人设与对话状态流程，验证用户留存与复玩率。",tags:["Agent","对话设计","留存"]},
+    {title:"企业知识库问答助手",role:"产品经理",desc:"基于RAG搭建内部知识检索问答，梳理知识接入流程与答案可信度机制，降低新人查找成本。",tags:["RAG","知识库","效率工具"]},
+    {title:"AI文案生成工作流",role:"产品经理",desc:"面向内容团队设计模板化生成与人工校准流程，打通从输入到发布的半自动链路。",tags:["Prompt","内容生产","自动化"]}
+  ],
+  experience:[
+    {period:"2024 — 至今",title:"AI产品经理",org:"某科技公司",desc:"负责AI对话类产品从0到1，主导需求定义、原型与上线迭代，跟踪核心指标持续优化。"},
+    {period:"2021 — 2024",title:"产品/UX设计师",org:"某互联网团队",desc:"负责功能设计与体验优化，沉淀设计规范，推动多个功能模块上线。"},
+    {period:"2019 — 2021",title:"内容运营专员",org:"某媒体机构",desc:"负责内容策划与用户增长，建立内容数据评估口径，锻炼了业务理解与表达能力。"}
+  ],
+  contact:[
+    {type:"mail",label:"邮箱",value:"hello@example.com",href:"mailto:hello@example.com"},
+    {type:"git",label:"GitHub",value:"github.com/hyejeongwong-max",href:"https://github.com/hyejeongwong-max"},
+    {type:"wechat",label:"微信",value:"WeChat ID（占位）",href:""}
+  ]
+};
+
+const STORE_KEY = "aipm-portfolio-v1";
+let data = loadData();
+let editing = false;
+
+function loadData(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
+function save(){ localStorage.setItem(STORE_KEY, JSON.stringify(data)); }
+
+/* ================= 工具：路径读写 ================= */
+function getPath(p){ return p.split(".").reduce((o,k)=>o==null?o:o[k],data); }
+function setPath(p,val){
+  const keys=p.split(".");const last=keys.pop();
+  const parent=keys.reduce((o,k)=>o[k],data);parent[last]=val;
+}
+
+/* ================= 渲染 ================= */
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function render(){
+  // hero 静态路径字段
+  document.querySelectorAll("[data-path]").forEach(el=>{
+    const v=getPath(el.dataset.path);
+    if(v!=null) el.textContent=v;
+  });
+  renderStats();
+  renderAbout();
+  renderSkills();
+  renderProjects();
+  renderTimeline();
+  renderContact();
+  document.getElementById("year").textContent=new Date().getFullYear();
+}
+
+function renderStats(){
+  const box=document.getElementById("stats");box.innerHTML="";
+  data.profile.stats.forEach((s,i)=>{
+    const d=document.createElement("div");d.className="stat editing-zone";
+    d.innerHTML=`<div class="num" data-edit data-path="profile.stats.${i}.num">${esc(s.num)}</div>
+      <div class="lbl" data-edit data-path="profile.stats.${i}.label">${esc(s.label)}</div>
+      ${editing?`<button class="del-btn" data-del="profile.stats.${i}">删除</button>`:""}`;
+    box.appendChild(d);
+  });
+  if(editing){
+    const b=document.createElement("button");b.className="add-btn";
+    b.innerHTML="+ 添加数据项";b.onclick=()=>{data.profile.stats.push({num:"0",label:"新指标"});save();render();};
+    box.appendChild(b);
+  }
+}
+
+function renderAbout(){
+  const box=document.getElementById("aboutBody");box.innerHTML="";
+  data.profile.about.forEach((p,i)=>{
+    const d=document.createElement("div");d.className="editing-zone";
+    d.innerHTML=`<p data-edit data-path="profile.about.${i}">${esc(p)}</p>
+      ${editing?`<button class="del-btn" data-del="profile.about.${i}">删除</button>`:""}`;
+    box.appendChild(d);
+  });
+  if(editing){
+    const b=document.createElement("button");b.className="add-btn";b.style.marginTop="10px";
+    b.innerHTML="+ 添加一段";b.onclick=()=>{data.profile.about.push("新的一段介绍文字。");save();render();};
+    box.appendChild(b);
+  }
+}
+
+function renderSkills(){
+  const box=document.getElementById("skillGrid");box.innerHTML="";
+  data.skills.forEach((g,gi)=>{
+    const card=document.createElement("div");card.className="skill-card editing-zone";
+    let tags=g.items.map((it,ii)=>`<span class="tag ${it.v?'v':''}" data-edit data-path="skills.${gi}.items.${ii}.t">${esc(it.t)}</span>
+      ${editing?`<button class="del-btn" data-del="skills.${gi}.items.${ii}">×</button>`:""}`).join("");
+    card.innerHTML=`<h3 data-edit data-path="skills.${gi}.group">${esc(g.group)}</h3>
+      <div class="tags">${tags}</div>
+      ${editing?`<button class="add-btn" style="margin-top:12px" data-add-skill="${gi}">+ 添加标签</button>`:""}
+      ${editing?`<button class="del-btn" data-del="skills.${gi}">删除整组</button>`:""}`;
+    box.appendChild(card);
+  });
+  if(editing){
+    const b=document.createElement("button");b.className="add-btn";b.style.gridColumn="1/-1";
+    b.innerHTML="+ 添加技能组";b.onclick=()=>{data.skills.push({group:"新技能组",items:[{t:"新标签",v:false}]});save();render();};
+    box.appendChild(b);
+  }
+}
+
+function renderProjects(){
+  const box=document.getElementById("projGrid");box.innerHTML="";
+  data.projects.forEach((p,i)=>{
+    const card=document.createElement("div");card.className="proj-card editing-zone";
+    card.innerHTML=`
+      <div class="proj-role" data-edit data-path="projects.${i}.role">${esc(p.role)}</div>
+      <h3 data-edit data-path="projects.${i}.title">${esc(p.title)}</h3>
+      <p data-edit data-path="projects.${i}.desc">${esc(p.desc)}</p>
+      <div class="proj-tags">${p.tags.map((t,ti)=>`<span data-edit data-path="projects.${i}.tags.${ti}">${esc(t)}</span>`).join("")}</div>
+      ${editing?`<button class="del-btn" data-del="projects.${i}">删除</button>
+      <button class="add-btn" data-add-tag="${i}" style="align-self:flex-start">+ 添加标签</button>`:""}`;
+    box.appendChild(card);
+  });
+  if(editing){
+    const b=document.createElement("button");b.className="add-btn";b.style.gridColumn="1/-1";b.style.justifyContent="center";
+    b.innerHTML="+ 添加项目";b.onclick=()=>{data.projects.push({title:"新项目",role:"角色",desc:"项目一句话描述。",tags:["标签"]});save();render();};
+    box.appendChild(b);
+  }
+}
+
+function renderTimeline(){
+  const box=document.getElementById("timeline");box.innerHTML="";
+  data.experience.forEach((x,i)=>{
+    const d=document.createElement("div");d.className="tl-item editing-zone";
+    d.innerHTML=`
+      <div class="tl-period" data-edit data-path="experience.${i}.period">${esc(x.period)}</div>
+      <h3 data-edit data-path="experience.${i}.title">${esc(x.title)}</h3>
+      <div class="tl-org" data-edit data-path="experience.${i}.org">${esc(x.org)}</div>
+      <p data-edit data-path="experience.${i}.desc">${esc(x.desc)}</p>
+      ${editing?`<button class="del-btn" data-del="experience.${i}">删除</button>`:""}`;
+    box.appendChild(d);
+  });
+  if(editing){
+    const b=document.createElement("button");b.className="add-btn";b.style.marginTop="8px";
+    b.innerHTML="+ 添加经历";b.onclick=()=>{data.experience.push({period:"年份",title:"职位",org:"公司",desc:"这段经历一句话成果。"});save();render();};
+    box.appendChild(b);
+  }
+}
+
+function renderContact(){
+  const box=document.getElementById("contactGrid");box.innerHTML="";
+  const icons={
+    mail:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
+    git:'<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>',
+    wechat:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8.5 3C4.9 3 2 5.5 2 8.6c0 1.8.96 3.38 2.47 4.42L3.8 15.5l2.7-1.4c.6.16 1.24.25 1.9.25"/><path d="M14.5 9c3.6 0 6.5 2.4 6.5 5.4 0 1.7-.95 3.23-2.43 4.22l.63 2.18-2.55-1.33a6.9 6.9 0 0 1-2.15.33c-3.6 0-6.5-2.4-6.5-5.4S10.9 9 14.5 9Z"/></svg>'
+  };
+  data.contact.forEach((c,i)=>{
+    const card=document.createElement("div");card.className="contact-card editing-zone";
+    const inner=`<div>${icons[c.type]||icons.mail}</div>
+      <div style="min-width:0"><div class="c-label" data-edit data-path="contact.${i}.label">${esc(c.label)}</div>
+      <div class="c-value">${c.href?`<a href="${esc(c.href)}" target="_blank" rel="noopener" data-edit data-path="contact.${i}.value">${esc(c.value)}</a>`:`<span data-edit data-path="contact.${i}.value">${esc(c.value)}</span>`}</div></div>
+      ${editing?`<button class="del-btn" data-del="contact.${i}">删除</button>`:""}`;
+    card.innerHTML=inner;
+    box.appendChild(card);
+  });
+  if(editing){
+    const b=document.createElement("button");b.className="add-btn";b.style.gridColumn="1/-1";
+    b.innerHTML="+ 添加联系方式";b.onclick=()=>{data.contact.push({type:"mail",label:"新渠道",value:"内容",href:""});save();render();};
+    box.appendChild(b);
+  }
+}
+
+/* ================= 编辑模式 ================= */
+function applyEditing(){
+  document.body.classList.toggle("editing",editing);
+  document.getElementById("toggleEdit").textContent=editing?"退出":"编辑";
+  document.querySelectorAll("[data-edit]").forEach(el=>{el.contentEditable=editing;});
+}
+
+function enterEdit(){editing=true;applyEditing();render();}
+function exitEdit(){editing=false;applyEditing();render();}
+
+// 文本改动写回（事件委托）
+document.addEventListener("input",e=>{
+  const el=e.target;
+  if(el.hasAttribute("data-edit")&&editing){
+    setPath(el.dataset.path,el.textContent);
+    save();
+  }
+});
+// 删除 / 添加（事件委托）
+document.addEventListener("click",e=>{
+  const del=e.target.closest("[data-del]");
+  if(del&&editing){
+    e.stopPropagation();
+    const p=del.dataset.del;const keys=p.split(".");const last=keys.pop();
+    const parent=keys.reduce((o,k)=>o[k],data);parent.splice(Number(last),1);
+    save();render();return;
+  }
+  const addSkill=e.target.closest("[data-add-skill]");
+  if(addSkill){data.skills[Number(addSkill.dataset.addSkill)].items.push({t:"新标签",v:false});save();render();return;}
+  const addTag=e.target.closest("[data-add-tag]");
+  if(addTag){data.projects[Number(addTag.dataset.addTag)].tags.push("标签");save();render();return;}
+});
+
+// 按钮：完成 / 导出 / 导入 / 恢复
+document.getElementById("doneBtn").onclick=exitEdit;
+document.getElementById("toggleEdit").onclick=()=>editing?exitEdit():enterEdit();
+document.getElementById("exportBtn").onclick=()=>{
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download="portfolio-config.json";a.click();URL.revokeObjectURL(a.href);
+};
+document.getElementById("importBtn").onclick=()=>document.getElementById("importFile").click();
+document.getElementById("importFile").onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{try{data=JSON.parse(r.result);save();render();}catch(err){alert("配置文件格式不正确，未导入。");}};
+  r.readAsText(f);e.target.value="";
+};
+document.getElementById("resetBtn").onclick=()=>{
+  if(confirm("确定恢复为默认占位内容？当前本机修改将被覆盖。")){
+    data=JSON.parse(JSON.stringify(DEFAULT_DATA));save();render();
+  }
+};
+
+// 滚动按钮与导航
+document.querySelectorAll("[data-scroll]").forEach(b=>b.onclick=()=>{
+  const t=document.getElementById(b.dataset.scroll);if(t)t.scrollIntoView({behavior:"smooth"});
+});
+const hb=document.getElementById("hamburger"),nav=document.getElementById("navLinks");
+hb.onclick=()=>nav.classList.toggle("open");
+nav.querySelectorAll("a").forEach(a=>a.onclick=()=>nav.classList.remove("open"));
+
+render();
+applyEditing();
+</script>
+</body>
+</html>
